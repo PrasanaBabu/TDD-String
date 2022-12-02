@@ -17,7 +17,7 @@ public class Main {
                 switch(choice) {
                     case 1:
                         inputString = getInputString();
-                        if (!properInput(inputString)){
+                        if (imProperInput(inputString)){
                             continue;
                         }
                         else {
@@ -27,7 +27,7 @@ public class Main {
 
                     case 2:
                         inputString = getInputString();
-                        if(!properInput(inputString)) {
+                        if(imProperInput(inputString)) {
                             continue;
                         }
                         else if(stringMethods.palindromeOrNot(inputString) == 10) {
@@ -40,7 +40,7 @@ public class Main {
 
                     case 3:
                         inputString = getInputString();
-                        if(!properInput(inputString)) {
+                        if(imProperInput(inputString)) {
                             continue;
                         }
                         else {
@@ -82,16 +82,16 @@ public class Main {
         System.out.println("After Removing duplicates from the string is:\n"
                 + stringMethods.removeDuplicatesFromString(inputString) );
     }
-    private static boolean properInput(String inputString) {
+    private static boolean imProperInput(String inputString) {
         if(emptyStringCheck(inputString)){
             System.out.println("You entered an empty string\n");
-            return false;
+            return true;
         } else if (spaceAtStart(inputString)) {
             System.out.println("You entered a string starting with space which is not allowed\n");
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
     private static boolean spaceAtStart(String inputString) {
         return inputString.charAt(0) == ' ';
