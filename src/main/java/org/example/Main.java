@@ -3,6 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
+    static final Scanner in= new Scanner(System.in);
     static int choice;
     static char toContinue = 'y';
     static String inputString;
@@ -11,13 +12,11 @@ public class Main {
 
 
         do {
-            Scanner in=new Scanner(System.in);
-            choice = getInputForChoice(in);
+            choice = getInputForChoice();
             try {
                 switch(choice) {
                     case 1:
-                        inputString = getInputString(in);
-
+                        inputString = getInputString();
                         if (!properInput(inputString)){
                             continue;
                         }
@@ -27,7 +26,7 @@ public class Main {
                         break;
 
                     case 2:
-                        inputString = getInputString(in);
+                        inputString = getInputString();
                         if(!properInput(inputString)) {
                             continue;
                         }
@@ -40,7 +39,7 @@ public class Main {
                         break;
 
                     case 3:
-                        inputString = getInputString(in);
+                        inputString = getInputString();
                         if(!properInput(inputString)) {
                             continue;
                         }
@@ -52,15 +51,15 @@ public class Main {
                         throw new IllegalStateException("Unexpected value: " + choice);
                 }
             }catch (NumberNotAllowedException e){
-                numberAllowedCheck(in);
+                numberAllowedCheck();
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
-            toContinue = getInputForContinue(in);
+            toContinue = getInputForContinue();
         }while (toContinue == 'Y' || toContinue == 'y');
     }
 
-    private static int getInputForChoice(Scanner in) {
+    private static int getInputForChoice() {
         int choice;
         System.out.println("" +
                 " Choose options: \n" +
@@ -72,14 +71,12 @@ public class Main {
         in.nextLine();
         return choice;
     }
-
-    private static char getInputForContinue(Scanner in) {
+    private static char getInputForContinue() {
         char toContinue;
         System.out.println("Enter Y to continue N to exit");
         toContinue = in.next().charAt(0);
         return toContinue;
     }
-
     private static void printDuplicateMethodOutputToConsole(String inputString, StringMethods stringMethods) throws NumberNotAllowedException {
         System.out.println("Before removing duplicates from the string is:\n" + inputString);
         System.out.println("After Removing duplicates from the string is:\n"
@@ -96,28 +93,24 @@ public class Main {
 
         return true;
     }
-
     private static boolean spaceAtStart(String inputString) {
         return inputString.charAt(0) == ' ';
     }
-
     private static boolean emptyStringCheck(String inputString)  {
         return inputString.isEmpty();
     }
-
-    private static void printSwapResultToConsole(String inputString, StringMethods stringMethods) throws NumberNotAllowedException {
+    private static void printSwapResultToConsole(String inputString,
+                                                 StringMethods stringMethods)
+            throws NumberNotAllowedException {
         System.out.println("Before swapping string is:\n" + inputString);
         System.out.println("After swapping string is:\n"
                 + stringMethods.swapOnlyLastTwoCharacters(inputString));
     }
-
-    private static String getInputString(Scanner in) {
+    private static String getInputString() {
         System.out.println("Enter string");
         return in.nextLine();
     }
-
-
-    private static void numberAllowedCheck(Scanner in) {
+    private static void numberAllowedCheck() {
 
             System.out.println("The string contains number do you want to check including numbers (Y/N)??");
             char choiceForIncludingNumber = in.next().charAt(0);
