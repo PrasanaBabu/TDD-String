@@ -3,30 +3,22 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
+    static int choice;
+    static char toContinue = 'y';
+    static String inputString;
+    static StringMethods stringMethods=new StringMethodsImpl();
     public static void main(String[] args) {
-        int choice;
-        char toContinue = 'n';
-        String inputString;
-        StringMethods stringMethods=new StringMethodsImpl();
 
-        do{
+
+        do {
             Scanner in=new Scanner(System.in);
-            System.out.println("" +
-                    " Choose options: \n" +
-                    " 1.Swap last two characters \n" +
-                    " 2.Check palindrome or not\n" +
-                    " 3.Remove duplicates from string\n" );
-
-            choice=in.nextInt();
-            in.nextLine();
-
+            choice = getInputForChoice(in);
             try {
-                switch(choice)
-                {
+                switch(choice) {
                     case 1:
                         inputString = getInputString(in);
 
-                        if (!inputFormatCheck(inputString)){
+                        if (!properInput(inputString)){
                             continue;
                         }
                         else {
@@ -36,7 +28,7 @@ public class Main {
 
                     case 2:
                         inputString = getInputString(in);
-                        if(!inputFormatCheck(inputString)) {
+                        if(!properInput(inputString)) {
                             continue;
                         }
                         else if(stringMethods.palindromeOrNot(inputString) == 10) {
@@ -49,7 +41,7 @@ public class Main {
 
                     case 3:
                         inputString = getInputString(in);
-                        if(!inputFormatCheck(inputString)) {
+                        if(!properInput(inputString)) {
                             continue;
                         }
                         else {
@@ -68,6 +60,19 @@ public class Main {
         }while (toContinue == 'Y' || toContinue == 'y');
     }
 
+    private static int getInputForChoice(Scanner in) {
+        int choice;
+        System.out.println("" +
+                " Choose options: \n" +
+                " 1.Swap last two characters \n" +
+                " 2.Check palindrome or not\n" +
+                " 3.Remove duplicates from string\n" );
+
+        choice= in.nextInt();
+        in.nextLine();
+        return choice;
+    }
+
     private static char getInputForContinue(Scanner in) {
         char toContinue;
         System.out.println("Enter Y to continue N to exit");
@@ -80,7 +85,7 @@ public class Main {
         System.out.println("After Removing duplicates from the string is:\n"
                 + stringMethods.removeDuplicatesFromString(inputString) );
     }
-    private static boolean inputFormatCheck(String inputString) {
+    private static boolean properInput(String inputString) {
         if(emptyStringCheck(inputString)){
             System.out.println("You entered an empty string\n");
             return false;
