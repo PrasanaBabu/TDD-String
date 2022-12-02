@@ -79,6 +79,7 @@ class StringMethodsTest {
     @Test
     void should_throwException_When_StringContainsNumberForPalindromeCheck(){
 
+        StringMethodsImpl.switchNumberAllowedFalse();
         assertThrows(NumberNotAllowedException.class,
                 () -> temp.palindromeOrNot("123")  );
 
@@ -86,6 +87,7 @@ class StringMethodsTest {
     @Test
     void should_throwException_When_StringContainsNumberForLastTwoSwap(){
 
+        StringMethodsImpl.switchNumberAllowedFalse();
         assertThrows(NumberNotAllowedException.class,
                 () -> temp.swapOnlyLastTwoCharacters("123")  );
 
@@ -94,10 +96,28 @@ class StringMethodsTest {
     @Test
     void should_throwException_When_StringContainsNumberForDuplicateRemoval(){
 
+        StringMethodsImpl.switchNumberAllowedFalse();
         assertThrows(NumberNotAllowedException.class,
                 () -> temp.removeDuplicatesFromString("123")  );
 
     }
+
+    @Test
+    void should_return_true_when_stringPassedWithNumberAllowed(){
+        StringMethodsImpl.switchNumberAllowedTrue();
+        assertTrue(StringMethodsImpl.proceedWithNumberAlso("123"));
+    }
+    @Test
+    void should_return_false_when_stringPassedWithNumberNotAllowed(){
+
+        assertFalse(StringMethodsImpl.proceedWithNumberAlso("123"));
+    }
+    @Test
+    void should_return_true_when_stringPassedWithNumberNotAllowedGivingNoNumber(){
+
+        assertTrue(StringMethodsImpl.proceedWithNumberAlso("abc"));
+    }
+
 
 
 }

@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int choice;
-        char toContinue = 0;
+        char toContinue = 'n';
         String inputString;
         StringMethods stringMethods=new StringMethodsImpl();
+
         do{
             Scanner in=new Scanner(System.in);
             System.out.println("" +
@@ -20,10 +21,8 @@ public class Main {
             in.nextLine();
 
             try {
-
                 switch(choice)
                 {
-
                     case 1:
                         inputString = getInputString(in);
 
@@ -118,7 +117,7 @@ public class Main {
             System.out.println("The string contains number do you want to check including numbers (Y/N)??");
             char choiceForIncludingNumber = in.next().charAt(0);
             if(choiceForIncludingNumber == 'Y' || choiceForIncludingNumber == 'y'){
-                StringMethodsImpl.switchNumberAllowed();
+                StringMethodsImpl.switchNumberAllowedTrue();
             } else if (choiceForIncludingNumber == 'N' || choiceForIncludingNumber == 'n') {
                 System.out.println("Give input next time without numbers");
             }

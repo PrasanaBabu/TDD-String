@@ -90,7 +90,10 @@ public class StringMethodsImpl implements StringMethods {
         }
         return true;
     }
-    public static void switchNumberAllowed(){
+    public static void switchNumberAllowedTrue(){
         numberAllowed = true;
+    }
+    public static void switchNumberAllowedFalse(){
+        numberAllowed = false;
     }
 }
